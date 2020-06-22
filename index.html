@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+(function(){
+	var content = document.getElementById("geolocation-test");
+
+	if (navigator.geolocation)
+	{
+		navigator.geolocation.getCurrentPosition(function(objPosition)
+		{
+			var lon = objPosition.coords.longitude;
+			var lat = objPosition.coords.latitude;
+
+			
+            console.log('longitude  '+lon,'   latitude   '+ lat);
+
+		}, function(objPositionError)
+		{
+			switch (objPositionError.code)
+			{
+				case objPositionError.PERMISSION_DENIED:
+                console.log("No se ha permitido el acceso a la posición del usuario.");
+				break;
+				case objPositionError.POSITION_UNAVAILABLE:
+                console.log("No se ha podido acceder a la información de su posición.");
+				break;
+				case objPositionError.TIMEOUT:
+                console.log("El servicio ha tardado demasiado tiempo en responder.");
+				break;
+				default:
+                console.log("Error desconocido.");
+			}
+		}, {
+			maximumAge: 75000,
+			timeout: 15000
+		});
+	}
+	else
+	{
+		console.log("Su navegador no soporta la API de geolocalización.");
+	}
+})();
+    </script>
+</body>
+</html>
