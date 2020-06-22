@@ -14,14 +14,25 @@
 	{
 		navigator.geolocation.getCurrentPosition(function(objPosition)
 		{
-			var lon = objPosition.coords.longitude;
-			var lat = objPosition.coords.latitude;
+			let longitude = objPosition.coords.longitude;
+			let latitude = objPosition.coords.latitude;
+            let precisionLongLat = objPosition.coords.accuracy;
+            let altitude = objPosition.coords.altitude;
+            let precisionAltitude = objPosition.coords.altitudeAccuracy;
+            let timeGetCoordinates = objPosition.coords.DOMTimeStamp;
+            let OrientationDecimalDegreesClockwise = objPosition.coords.OrientationDecimalDegreesClockwise;
+            document.write("The browser support geolocation.<br/>");
 
-			
-            console.log('longitude  '+ lon + '   latitude   '+ lat);
-            document.write('longitude  '+ lon + '<br/>   latitude   '+ lat);
+            console.log("longitude  "+ longitude + "   latitude   "+ latitude);
+            document.write("longitude  "+ longitude + 
+                           "<br/>   latitude   "+ latitude + 
+                           "<br/>   precisionLongLat   "+ precisionLongLat +
+                           "<br/>   altitude   "+ altitude +
+                           "<br/>   precisionAltitude   "+ precisionAltitude +
+                           "<br/>   timeGetCoordinates   "+ timeGetCoordinates +
+                           "<br/>   OrientationDecimalDegreesClockwise   "+ OrientationDecimalDegreesClockwise);
 
-
+                           OrientationDecimalDegreesClockwise
 		}, function(objPositionError)
 		{
 			switch (objPositionError.code)
@@ -45,7 +56,7 @@
 	}
 	else
 	{
-		console.log("Su navegador no soporta la API de geolocalización.");
+        document.write("The browser doesn't support geolocation.");
 	}
 })();
     </script>
