@@ -20,9 +20,10 @@
             let altitude = objPosition.coords.altitude;
             let precisionAltitude = objPosition.coords.altitudeAccuracy;
             let timeGetCoordinates = objPosition.coords.DOMTimeStamp;
-            let OrientationDecimalDegreesClockwise = objPosition.coords.OrientationDecimalDegreesClockwise;
-            document.write("The browser support geolocation.<br/>");
+            let orientationDecimalDegreesClockwise = objPosition.coords.heading;
+			let speedMeterSecond = objPosition.coords.speed;
 
+            document.write("The browser support geolocation.<br/>");
             console.log("longitude  "+ longitude + "   latitude   "+ latitude);
             document.write("longitude  "+ longitude + 
                            "<br/>   latitude   "+ latitude + 
@@ -30,24 +31,24 @@
                            "<br/>   altitude   "+ altitude +
                            "<br/>   precisionAltitude   "+ precisionAltitude +
                            "<br/>   timeGetCoordinates   "+ timeGetCoordinates +
-                           "<br/>   OrientationDecimalDegreesClockwise   "+ OrientationDecimalDegreesClockwise);
+                           "<br/>   orientationDecimalDegreesClockwise   "+ orientationDecimalDegreesClockwise +
+						   "<br/>   speedMeterSecond   "+ speedMeterSecond);
 
-                           OrientationDecimalDegreesClockwise
 		}, function(objPositionError)
 		{
 			switch (objPositionError.code)
 			{
 				case objPositionError.PERMISSION_DENIED:
-                console.log("No se ha permitido el acceso a la posición del usuario.");
+                console.log("The user's position is not accessible.");
 				break;
 				case objPositionError.POSITION_UNAVAILABLE:
-                console.log("No se ha podido acceder a la información de su posición.");
+                console.log("The information's position is not accessible.");
 				break;
 				case objPositionError.TIMEOUT:
-                console.log("El servicio ha tardado demasiado tiempo en responder.");
+                console.log("The service took a long time to respond.");
 				break;
 				default:
-                console.log("Error desconocido.");
+                console.log("Unknown error.");
 			}
 		}, {
 			maximumAge: 75000,
